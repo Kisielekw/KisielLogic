@@ -20,9 +20,12 @@ namespace KisielLogic
         protected AndGate andGate2;
         protected OrGate orGate1;
         protected OrGate orGate2;
+        protected NotGate notGate1;
+        protected NotGate notGate2;
 
-        private List<AndGate> connectedAndGates;
-        private List<OrGate> connectedOrGates;
+        protected List<AndGate> connectedAndGates;
+        protected List<OrGate> connectedOrGates;
+        protected List<NotGate> connectedNotGates;
 
         public bool State
         {
@@ -44,6 +47,7 @@ namespace KisielLogic
         {
             connectedAndGates = new List<AndGate>();
             connectedOrGates = new List<OrGate>();
+            connectedNotGates = new List<NotGate>();
 
             gateType = new int[2] { -1, -1 };
             objectName = pName;
@@ -97,6 +101,22 @@ namespace KisielLogic
             }
             return false;
         }
+        public bool ConnectInputObject(NotGate pNotGate)
+        {
+            if (gateType[0] == -1)
+            {
+                gateType[0] = 3;
+                notGate1 = pNotGate;
+                return true;
+            }
+            else if (gateType[1] == -1)
+            {
+                gateType[1] = 3;
+                notGate2 = pNotGate;
+                return true;
+            }
+            return false;
+        }
 
         protected void UpdateConnected()
         {
@@ -104,9 +124,13 @@ namespace KisielLogic
             {
                 and.Update();
             }
-            foreach (OrGate or in connectedOrGates)
+            foreach(OrGate or in connectedOrGates)
             {
                 or.Update();
+            }
+            foreach(NotGate not in connectedNotGates)
+            {
+                not.Update();
             }
         }
     }

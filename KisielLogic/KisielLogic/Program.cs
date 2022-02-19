@@ -6,24 +6,30 @@ namespace KisielLogic
     {
         static void Main()
         {
-            Lever switchA = new Lever("SwitchA");
-            Lever switchB = new Lever("SwitchB");
+            Lever switchA = new Lever("switchA");
+            Lever switchB = new Lever("switchB");
+            Lever switchC = new Lever("switchC");
+            AndGate AB = new AndGate("A and B");
+            NotGate nC = new NotGate("Not C");
+            OrGate ABonC = new OrGate("AB or nC");
+            NotGate nAbonC = new NotGate("not ABonC");
 
-            AndGate andGateA = new AndGate("andGateA");
-
-            switchA.ConnectOutputObject(andGateA);
-            switchB.ConnectOutputObject(andGateA);
-
-            Console.WriteLine(andGateA.State);
+            switchA.ConnectOutputObject(AB);
+            switchB.ConnectOutputObject(AB);
+            switchC.ConnectOutputObject(nC);
+            AB.ConnectOutputObject(ABonC);
+            nC.ConnectOutputObject(ABonC);
+            ABonC.ConnectOutputObject(nAbonC);
 
             switchA.ToggleLever();
-            switchB.ToggleLever();
+            switchC.ToggleLever();
 
-            Console.WriteLine(andGateA.State);
+            Console.WriteLine(nAbonC.State);
 
-            switchB.ToggleLever();
+            switchC.ToggleLever();
 
-            Console.WriteLine(andGateA.State);
+            Console.WriteLine(nAbonC.State);
+
         }
     }
 }

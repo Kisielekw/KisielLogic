@@ -14,7 +14,7 @@ namespace KisielLogic
 
         private List<AndGate> connectedAndGates;
         private List<OrGate> connectedOrGates;
-        //private Dictionary<string, NotGate> connectedNotGates;
+        private List<NotGate> connectedNotGates;
 
         public bool State
         {
@@ -35,6 +35,7 @@ namespace KisielLogic
         {
             connectedAndGates = new List<AndGate>();
             connectedOrGates = new List<OrGate>();
+            connectedNotGates = new List<NotGate>();
 
             objectName = pName;
             leverPosition = false;
@@ -75,6 +76,17 @@ namespace KisielLogic
             if (pOrGate.ConnectInputObject(this))
             {
                 connectedOrGates.Add(pOrGate);
+            }
+            else
+            {
+                Console.WriteLine("Unable to Connect Objects");
+            }
+        }
+        public void ConnectOutputObject(NotGate pNotGate)
+        {
+            if (pNotGate.ConnectInputObject(this))
+            {
+                connectedNotGates.Add(pNotGate);
             }
             else
             {

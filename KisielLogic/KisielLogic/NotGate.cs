@@ -6,51 +6,37 @@ using System.Threading.Tasks;
 
 namespace KisielLogic
 {
-    class OrGate:Gate2Input
+    class NotGate:Gate1Input
     {
-        public OrGate(string pName) : base(pName)
+        public NotGate(string pName) : base(pName)
         {
 
         }
 
         public void Update()
         {
-            bool state1 = false;
-            bool state2 = false;
+            bool inputState = false;
 
-            switch (gateType[0])
+            switch (gateType)
             {
                 case 0:
-                    state1 = lever1.State;
+                    inputState = leverInput.State;
                     break;
                 case 1:
-                    state1 = andGate1.State;
+                    inputState = andGateInput.State;
                     break;
                 case 2:
-                    state1 = orGate1.State;
+                    inputState = orGateInput.State;
+                    break;
+                case 3:
+                    inputState = notGateInput.State;
                     break;
                 case -1:
-                    state1 = false;
-                    break;
-            }
-            switch (gateType[1])
-            {
-                case 0:
-                    state2 = lever2.State;
-                    break;
-                case 1:
-                    state2 = andGate2.State;
-                    break;
-                case 2:
-                    state2 = orGate2.State;
-                    break;
-                case -1:
-                    state2 = false;
+                    inputState = false;
                     break;
             }
 
-            gateOutput = state1 || state2;
-
+            gateOutput = !inputState;
             UpdateConnected();
         }
 
