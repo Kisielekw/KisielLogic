@@ -6,100 +6,24 @@ using System.Threading.Tasks;
 
 namespace KisielLogic
 {
-    class Gate1Input
+    abstract class Gate1Input:Gate
     {
-        protected bool gateOutput;
-        private string objectName;
 
-        public bool State
+        protected Gate InputGate;
+
+        public Gate1Input(string pName):base(pName)
         {
-            get
-            {
-                return gateOutput;
-            }
-        }
-        public string Name
-        {
-            get
-            {
-                return objectName;
-            }
+            
         }
 
-        protected int gateType;
-
-        protected Lever leverInput;
-        protected AndGate andGateInput;
-        protected OrGate orGateInput;
-        protected NotGate notGateInput;
-
-        protected List<AndGate> connectedAndGates;
-        protected List<OrGate> connectedOrGates;
-        protected List<NotGate> connectedNotGates;
-
-        public Gate1Input(string pName)
+        public override bool ConnectInputObject(Gate pInputGate)
         {
-            connectedAndGates = new List<AndGate>();
-            connectedOrGates = new List<OrGate>();
-            connectedNotGates = new List<NotGate>();
-
-            gateType = -1;
-            objectName = pName;
-        }
-
-        public bool ConnectInputObject(Lever pLever)
-        {
-            if (gateType == -1)
+            if (InputGate != null)
             {
-                gateType = 0;
-                leverInput = pLever;
+                InputGate = pInputGate;
                 return true;
             }
             return false;
         }
-        public bool ConnectInputObject(AndGate pAndGate)
-        {
-            if (gateType == -1)
-            {
-                gateType = 1;
-                andGateInput = pAndGate;
-                return true;
-            }
-            return false;
-        }
-        public bool ConnectInputObject(OrGate pOrGate)
-        {
-            if (gateType == -1)
-            {
-                gateType = 2;
-                orGateInput = pOrGate;
-                return true;
-            }
-            return false;
-        }
-        public bool ConnectInputObject(NotGate pNotGate)
-        {
-            if (gateType == -1)
-            {
-                gateType = 3;
-                notGateInput = pNotGate;
-                return true;
-            }
-            return false;
-        }
-
-        protected void UpdateConnected()
-        {
-            foreach (AndGate and in connectedAndGates)
-            {
-                and.Update();
-            }
-            foreach (OrGate or in connectedOrGates)
-            {
-                or.Update();
-            }
-        }
-
-        
     }
 }

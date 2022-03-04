@@ -6,92 +6,28 @@ using System.Threading.Tasks;
 
 namespace KisielLogic
 {
-    class Lever
+    class Lever:Gate
     {
-        private bool leverPosition;
-
-        private string objectName;
-
-        private List<AndGate> connectedAndGates;
-        private List<OrGate> connectedOrGates;
-        private List<NotGate> connectedNotGates;
-
-        public bool State
+        public Lever(string pName):base(pName)
         {
-            get
-            {
-                return leverPosition;
-            }
-        }
-        public string Name
-        {
-            get
-            {
-                return objectName;
-            }
-        }
-
-        public Lever(string pName)
-        {
-            connectedAndGates = new List<AndGate>();
-            connectedOrGates = new List<OrGate>();
-            connectedNotGates = new List<NotGate>();
-
-            objectName = pName;
-            leverPosition = false;
-        }
-
-        private void UpdateConnected()
-        {
-            foreach (AndGate and in connectedAndGates)
-            {
-                and.Update();
-            }
-            foreach (OrGate or in connectedOrGates)
-            {
-                or.Update();
-            }
+            state = false;
         }
 
         public void ToggleLever()
         {
-            leverPosition = !leverPosition;
+            state = !state;
 
             UpdateConnected();
         }
 
-        public void ConnectOutputObject(AndGate pAndGate)
+        public override void Update()
         {
-            if (pAndGate.ConnectInputObject(this))
-            {
-                connectedAndGates.Add(pAndGate);
-            }
-            else
-            {
-                Console.WriteLine("Unable to Connect Objects");
-            }
+            UpdateConnected();
         }
-        public void ConnectOutputObject(OrGate pOrGate)
+
+        public override bool ConnectInputObject(Gate pInputGate)
         {
-            if (pOrGate.ConnectInputObject(this))
-            {
-                connectedOrGates.Add(pOrGate);
-            }
-            else
-            {
-                Console.WriteLine("Unable to Connect Objects");
-            }
-        }
-        public void ConnectOutputObject(NotGate pNotGate)
-        {
-            if (pNotGate.ConnectInputObject(this))
-            {
-                connectedNotGates.Add(pNotGate);
-            }
-            else
-            {
-                Console.WriteLine("Unable to Connect Objects");
-            }
+            throw new NotImplementedException("You Cant Connect an input to a Lever");
         }
     }
 }
