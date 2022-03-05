@@ -6,7 +6,7 @@ namespace KisielLogic
     {
         static void Main()
         {
-
+            
         }
     }
 }
