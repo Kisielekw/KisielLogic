@@ -18,9 +18,10 @@ namespace KisielLogic
 
         public override bool ConnectInputObject(Gate pInputGate)
         {
-            if (InputGate != null)
+            if (InputGate == null)
             {
                 InputGate = pInputGate;
+                Update();
                 return true;
             }
             return false;

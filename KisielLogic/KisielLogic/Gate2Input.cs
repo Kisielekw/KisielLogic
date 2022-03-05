@@ -26,6 +26,7 @@ namespace KisielLogic
             else if(inputGates[1] == null)
             {
                 inputGates[1] = pInputGate;
+                Update();
                 return true;
             }
             return false;
