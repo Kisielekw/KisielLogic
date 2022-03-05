@@ -27,7 +27,7 @@ namespace KisielLogic
 
         public override bool ConnectInputObject(Gate pInputGate)
         {
-            throw new NotImplementedException("You Cant Connect an input to a Lever");
+            throw new Exception("You Cant Connect an input to a Lever");
         }
     }
 }
