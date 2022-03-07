@@ -6,11 +6,7 @@ namespace KisielLogic
     {
         static void Main()
         {
-            Lever Switch = new Lever("switch");
-            NotGate notGate = new NotGate("not");
-            Switch.ConnectOutputObject(notGate);
-
-            Console.WriteLine(notGate.State);
+            
         }
     }
 }
