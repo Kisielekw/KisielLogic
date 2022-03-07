@@ -16,6 +16,12 @@ namespace KisielLogic
             inputGates = new Gate[2];
         }
 
+        /// <summary>
+        /// Connects a gate to the input of this gate
+        /// Returns True if it was succesfull and False otherwise
+        /// </summary>
+        /// <param name="pInputGate">The gate that outputs into this gate</param>
+        /// <returns></returns>
         public override bool ConnectInputObject(Gate pInputGate)
         {
             if(inputGates[0] == null)

@@ -11,11 +11,17 @@ namespace KisielLogic
 
         protected Gate InputGate;
 
-        public Gate1Input(string pName):base(pName)
+        protected Gate1Input(string pName):base(pName)
         {
             
         }
 
+        /// <summary>
+        /// Conects a Gates output into the input of this gate
+        /// Returns True if it was able to connect and False otherwise
+        /// </summary>
+        /// <param name="pInputGate">The gate that outputs into this gate</param>
+        /// <returns></returns>
         public override bool ConnectInputObject(Gate pInputGate)
         {
             if (InputGate == null)

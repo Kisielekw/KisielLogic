@@ -6,11 +6,18 @@ using System.Threading.Tasks;
 
 namespace KisielLogic
 {
+    /// <summary>
+    /// The Base abstract class to every gate and lever
+    /// Contains most of the code required to connect and interact between gates
+    /// </summary>
     abstract class Gate
     {
         protected bool state;
         protected string name;
 
+        /// <summary>
+        /// The curent output of the gate
+        /// </summary>
         public bool State
         {
             get
@@ -18,6 +25,9 @@ namespace KisielLogic
                 return state;
             }
         }
+        /// <summary>
+        /// The name the user has given to the gate
+        /// </summary>
         public string Name
         {
             get
@@ -28,6 +38,10 @@ namespace KisielLogic
 
         protected List<Gate> connectedGates;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pName">The you give to the gate to easily identify the gate</param>
         public Gate(string pName)
         {
             connectedGates = new List<Gate>();
@@ -36,6 +50,11 @@ namespace KisielLogic
         }
 
         public abstract bool ConnectInputObject(Gate pInputGate);
+
+        /// <summary>
+        /// Connecting the output of the gate to the input of another
+        /// </summary>
+        /// <param name="pGate">The gate you would like to connect this gate to</param>
         public void ConnectOutputObject(Gate pGate)
         {
             if (pGate.ConnectInputObject(this))
@@ -48,6 +67,9 @@ namespace KisielLogic
             }
         }
 
+        /// <summary>
+        /// Updates the gates output by looking at its input
+        /// </summary>
         public abstract void Update();
 
         protected void UpdateConnected()
