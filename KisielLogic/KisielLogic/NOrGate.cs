@@ -16,6 +16,8 @@ namespace KisielLogic
         public override void Update()
         {
             state = !(inputGates[0].State || inputGates[1].State);
+
+            UpdateConnected();
         }
     }
 }

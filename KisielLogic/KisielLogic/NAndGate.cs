@@ -19,6 +19,8 @@ namespace KisielLogic
             bool state2 = inputGates[1].State;
 
             state = !(state1 && state2);
+
+            UpdateConnected();
         }
     }
 }
