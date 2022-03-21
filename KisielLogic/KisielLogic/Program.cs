@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace KisielLogic
 {
@@ -6,7 +10,7 @@ namespace KisielLogic
     {
         static void Main()
         {
-            
+
         }
     }
 }
