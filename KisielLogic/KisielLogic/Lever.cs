@@ -13,7 +13,7 @@ namespace KisielLogic
             state = false;
         }
 
-        public void ToggleLever()
+        public override void ToggleLever()
         {
             state = !state;
 

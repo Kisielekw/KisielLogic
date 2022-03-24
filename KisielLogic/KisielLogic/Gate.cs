@@ -79,5 +79,10 @@ namespace KisielLogic
                 gate.Update();
             }
         }
+
+        public virtual void ToggleLever()
+        {
+            throw new Exception("Can't toggle a gate\nThis command is only available for Lever objects");
+        }
     }
 }
