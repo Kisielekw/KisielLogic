@@ -14,12 +14,14 @@ namespace KisielLogic
             {
                 Console.WriteLine("1. Create a new gate");
                 Console.WriteLine("2. Conect 2 gates together");
-                Console.WriteLine("3. Save the currnet circuit");
-                Console.WriteLine("4. Load a circuit");
-                Console.WriteLine("5. Exit the program");
+                Console.WriteLine("3. Toggle a switch");
+                Console.WriteLine("4. Get output");
+                Console.WriteLine("5. Save the currnet circuit");
+                Console.WriteLine("6. Load a circuit");
+                Console.WriteLine("7. Exit the program");
                 int answer = SelectValue(1, 5);
 
-                if(answer == 5)
+                if(answer == 7)
                 {
                     Console.WriteLine("Press any key to exit");
                     Console.ReadKey();
@@ -86,6 +88,26 @@ namespace KisielLogic
                 }
                 else if(answer == 3)
                 {
+                    Console.Write("Enter the name of the switch you would like to toggle: ");
+                    string name = Console.ReadLine();
+                    Gate gate = FindGate(name);
+                    if(gate == null)
+                    {
+                        Console.WriteLine("There is no gate with this name");
+                        Continue();
+                    }
+                    if(gate.GetType() != typeof(Lever))
+                    {
+                        Console.WriteLine("Item selected isn't a Switch");
+                        Continue();
+                    }
+                    Lever Switch = (Lever)gate;
+                    Switch.ToggleLever();
+                    Console.WriteLine("{0} is now set to {1}", Switch.Name, Switch.State);
+                    Continue();
+                }
+                else if(answer == 5)
+                {
                     if(listOfGates.Count < 2)
                     {
                         Console.WriteLine("You need at least 2 Gates to save your circuit");
@@ -100,7 +122,7 @@ namespace KisielLogic
                     }
                     writeCircuit.Close();
                 }
-                else if(answer == 4)
+                else if(answer == 6)
                 {
                     string[] circuitFiles = Directory.GetFiles("Circuits", "*.gate");
                     if(circuitFiles.Length == 0)
