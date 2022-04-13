@@ -22,5 +22,15 @@ namespace KisielLogic
 
             UpdateConnected();
         }
+
+        public override string ToString()
+        {
+            string outputGates = "";
+            foreach (Gate gate in connectedGates)
+            {
+                outputGates += "," + gate.Name;
+            }
+            return "NAndGate," + Name + outputGates;
+        }
     }
 }
