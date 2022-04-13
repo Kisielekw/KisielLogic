@@ -103,6 +103,11 @@ namespace KisielLogic
                 else if(answer == 4)
                 {
                     string[] circuitFiles = Directory.GetFiles("Circuits", "*.gate");
+                    if(circuitFiles.Length == 0)
+                    {
+                        Console.WriteLine("No circuits available");
+                        Continue();
+                    }
                     Console.WriteLine("Available Circuits");
                     for(int i = 1; i <= circuitFiles.Length; i++)
                     {
