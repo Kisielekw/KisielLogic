@@ -95,16 +95,34 @@ namespace KisielLogic
                     {
                         Console.WriteLine("There is no gate with this name");
                         Continue();
+                        continue;
                     }
                     if(gate.GetType() != typeof(Lever))
                     {
                         Console.WriteLine("Item selected isn't a Switch");
                         Continue();
+                        continue;
                     }
                     Lever Switch = (Lever)gate;
                     Switch.ToggleLever();
                     Console.WriteLine("{0} is now set to {1}", Switch.Name, Switch.State);
                     Continue();
+                    continue;
+                }
+                else if(answer == 4)
+                {
+                    Console.Write("Enter the name of the gate you would like to select as your end point: ");
+                    string name = Console.ReadLine();
+                    Gate gate = FindGate(name);
+                    if( gate == null)
+                    {
+                        Console.WriteLine("This gate dosn't exist");
+                        Continue();
+                        continue;
+                    }
+                    Console.WriteLine("{0} returns {1}", gate.Name, gate.State);
+                    Continue();
+                    continue;
                 }
                 else if(answer == 5)
                 {
@@ -112,6 +130,7 @@ namespace KisielLogic
                     {
                         Console.WriteLine("You need at least 2 Gates to save your circuit");
                         Continue();
+                        continue;
                     }
                     string name = SelectName();
                     Directory.CreateDirectory("Circuits");
@@ -129,6 +148,7 @@ namespace KisielLogic
                     {
                         Console.WriteLine("No circuits available");
                         Continue();
+                        continue;
                     }
                     Console.WriteLine("Available Circuits");
                     for(int i = 1; i <= circuitFiles.Length; i++)
@@ -141,11 +161,13 @@ namespace KisielLogic
                     {
                         LoadCircuit("Circuits\\" + chooseCircuit + ".gate");
                         Continue();
+                        continue;
                     }
                     else
                     {
                         Console.WriteLine("This Circuit dosn't exist");
                         Continue();
+                        continue;
                     }
                 }
             }
