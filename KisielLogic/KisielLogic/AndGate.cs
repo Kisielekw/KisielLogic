@@ -9,7 +9,7 @@ namespace KisielLogic
     class AndGate : Gate2Input
     {
 
-        public AndGate(string pName) : base(pName)
+        public AndGate(string pName) : base(pName, "AndGate")
         {
 
         }
@@ -22,16 +22,6 @@ namespace KisielLogic
             state = state1 && state2;
 
             UpdateConnected();
-        }
-
-        public override string ToString()
-        {
-            string outputGates = "";
-            foreach(Gate gate in connectedGates)
-            {
-                outputGates += "," + gate.Name ;
-            }
-            return "AndGate," + Name + outputGates;
         }
     }
 }
