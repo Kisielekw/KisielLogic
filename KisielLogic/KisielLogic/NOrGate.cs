@@ -8,7 +8,7 @@ namespace KisielLogic
 {
     class NOrGate:Gate2Input
     {
-        public NOrGate(string pName) : base(pName)
+        public NOrGate(string pName) : base(pName, "NOrGate")
         {
 
         }
@@ -18,16 +18,6 @@ namespace KisielLogic
             state = !(inputGates[0].State || inputGates[1].State);
 
             UpdateConnected();
-        }
-
-        public override string ToString()
-        {
-            string outputGates = "";
-            foreach (Gate gate in connectedGates)
-            {
-                outputGates += "," + gate.Name;
-            }
-            return "NOrGate," + Name + outputGates;
         }
     }
 }

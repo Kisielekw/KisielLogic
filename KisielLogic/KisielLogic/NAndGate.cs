@@ -8,7 +8,7 @@ namespace KisielLogic
 {
     class NAndGate : Gate2Input
     {
-        public NAndGate(string pName) : base(pName)
+        public NAndGate(string pName) : base(pName, "NAndGate")
         {
 
         }
@@ -21,16 +21,6 @@ namespace KisielLogic
             state = !(state1 && state2);
 
             UpdateConnected();
-        }
-
-        public override string ToString()
-        {
-            string outputGates = "";
-            foreach (Gate gate in connectedGates)
-            {
-                outputGates += "," + gate.Name;
-            }
-            return "NAndGate," + Name + outputGates;
         }
     }
 }

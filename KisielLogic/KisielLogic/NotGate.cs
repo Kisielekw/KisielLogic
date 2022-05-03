@@ -8,7 +8,7 @@ namespace KisielLogic
 {
     class NotGate:Gate1Input
     {
-        public NotGate(string pName) : base(pName)
+        public NotGate(string pName) : base(pName, "NotGate")
         {
 
         }
@@ -17,16 +17,6 @@ namespace KisielLogic
         {
             state = !InputGate.State;
             UpdateConnected();
-        }
-
-        public override string ToString()
-        {
-            string outputGates = "";
-            foreach (Gate gate in connectedGates)
-            {
-                outputGates += "," + gate.Name;
-            }
-            return "NotGate," + Name + outputGates;
         }
     }
 }

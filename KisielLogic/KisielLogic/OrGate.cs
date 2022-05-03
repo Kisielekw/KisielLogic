@@ -8,7 +8,7 @@ namespace KisielLogic
 {
     class OrGate:Gate2Input
     {
-        public OrGate(string pName) : base(pName)
+        public OrGate(string pName) : base(pName, "OrGate")
         {
 
         }
@@ -21,16 +21,6 @@ namespace KisielLogic
             state = state1 || state2;
 
             UpdateConnected();
-        }
-
-        public override string ToString()
-        {
-            string outputGates = "";
-            foreach (Gate gate in connectedGates)
-            {
-                outputGates += "," + gate.Name;
-            }
-            return "OrGate," + Name + outputGates;
         }
     }
 }

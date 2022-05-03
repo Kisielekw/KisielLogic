@@ -11,7 +11,7 @@ namespace KisielLogic
 
         protected Gate InputGate;
 
-        protected Gate1Input(string pName):base(pName)
+        protected Gate1Input(string pName, string gateType):base(pName, gateType)
         {
             
         }

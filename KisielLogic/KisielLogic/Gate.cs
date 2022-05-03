@@ -14,6 +14,7 @@ namespace KisielLogic
     {
         protected bool state;
         protected string name;
+        private string typeOfGate;
 
         /// <summary>
         /// The curent output of the gate
@@ -42,10 +43,10 @@ namespace KisielLogic
         /// 
         /// </summary>
         /// <param name="pName">The you give to the gate to easily identify the gate</param>
-        public Gate(string pName)
+        public Gate(string pName, string gateType)
         {
             connectedGates = new List<Gate>();
-
+            typeOfGate = gateType;
             name = pName;
         }
 
@@ -83,6 +84,16 @@ namespace KisielLogic
         public virtual void ToggleLever()
         {
             throw new Exception("Can't toggle a gate\nThis command is only available for Lever objects");
+        }
+        public override string ToString()
+        {
+            string output = "";
+            output += typeOfGate + " outputs to the folowing gates: ";
+            foreach(Gate gate in connectedGates)
+            {
+                output += gate.Name + ", ";
+            }
+            return output;
         }
     }
 }

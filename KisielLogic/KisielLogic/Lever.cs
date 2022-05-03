@@ -8,7 +8,7 @@ namespace KisielLogic
 {
     class Lever:Gate
     {
-        public Lever(string pName):base(pName)
+        public Lever(string pName):base(pName, "Switch")
         {
             state = false;
         }
@@ -28,16 +28,6 @@ namespace KisielLogic
         public override bool ConnectInputObject(Gate pInputGate)
         {
             return false;
-        }
-
-        public override string ToString()
-        {
-            string outputGates = "";
-            foreach (Gate gate in connectedGates)
-            {
-                outputGates += "," + gate.Name;
-            }
-            return "Lever," + Name + outputGates;
         }
     }
 }
