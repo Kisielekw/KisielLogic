@@ -13,15 +13,16 @@ namespace KisielLogic
             while (true)
             {
                 Console.WriteLine("1. Create a new gate");
-                Console.WriteLine("2. Conect 2 gates together");
-                Console.WriteLine("3. Toggle a switch");
+                Console.WriteLine("2. Toggle a switch");
+                Console.WriteLine("3. Conect 2 gates together");
                 Console.WriteLine("4. Get output");
                 Console.WriteLine("5. Save the currnet circuit");
                 Console.WriteLine("6. Load a circuit");
-                Console.WriteLine("7. Exit the program");
-                int answer = SelectValue(1, 5);
+                Console.WriteLine("7. Inspect circuit");
+                Console.WriteLine("8. Exit the program");
+                int answer = SelectValue(1, 8);
 
-                if(answer == 7)
+                if(answer == 8)
                 {
                     Console.WriteLine("Press any key to exit");
                     Console.ReadKey();
@@ -64,6 +65,29 @@ namespace KisielLogic
                 }
                 else if(answer == 2)
                 {
+                    Console.Write("Enter the name of the switch you would like to toggle: ");
+                    string name = Console.ReadLine();
+                    Gate gate = FindGate(name);
+                    if(gate == null)
+                    {
+                        Console.WriteLine("There is no gate with this name");
+                        Continue();
+                        continue;
+                    }
+                    if(gate.GetType() != typeof(Lever))
+                    {
+                        Console.WriteLine("Item selected isn't a Switch");
+                        Continue();
+                        continue;
+                    }
+                    Lever Switch = (Lever)gate;
+                    Switch.ToggleLever();
+                    Console.WriteLine("{0} is now set to {1}", Switch.Name, Switch.State);
+                    Continue();
+                    continue;
+                }
+                else if(answer == 3)
+                {
                     Console.Write("Enter the name of the first gate: ");
                     string name = Console.ReadLine();
                     Gate gate1 = FindGate(name);
@@ -85,29 +109,6 @@ namespace KisielLogic
 
                     gate1.ConnectOutputObject(gate2);
                     Console.WriteLine("Gates Conected");
-                }
-                else if(answer == 3)
-                {
-                    Console.Write("Enter the name of the switch you would like to toggle: ");
-                    string name = Console.ReadLine();
-                    Gate gate = FindGate(name);
-                    if(gate == null)
-                    {
-                        Console.WriteLine("There is no gate with this name");
-                        Continue();
-                        continue;
-                    }
-                    if(gate.GetType() != typeof(Lever))
-                    {
-                        Console.WriteLine("Item selected isn't a Switch");
-                        Continue();
-                        continue;
-                    }
-                    Lever Switch = (Lever)gate;
-                    Switch.ToggleLever();
-                    Console.WriteLine("{0} is now set to {1}", Switch.Name, Switch.State);
-                    Continue();
-                    continue;
                 }
                 else if(answer == 4)
                 {
@@ -169,6 +170,24 @@ namespace KisielLogic
                         Continue();
                         continue;
                     }
+                }
+                else if(answer == 7)
+                {
+                    if(listOfGates.Count < 1)
+                    {
+                        Console.WriteLine("The are no gates in the current circuit");
+                        Console.WriteLine("Press any key to continue");
+                        Console.ReadKey();
+                        continue;
+                    }
+                    Console.WriteLine("The Current gates in the circuit are:");
+                    foreach(Gate g in listOfGates)
+                    {
+                        Console.WriteLine(g);
+                    }
+                    Console.WriteLine("Press any key to continue:");
+                    Console.ReadKey();
+                    
                 }
             }
         }
