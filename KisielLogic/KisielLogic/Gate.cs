@@ -88,7 +88,7 @@ namespace KisielLogic
         public override string ToString()
         {
             string output = "";
-            output += typeOfGate + " outputs to the folowing gates: ";
+            output += typeOfGate +" " + name + " outputs to the folowing gates: ";
             foreach(Gate gate in connectedGates)
             {
                 output += gate.Name + ", ";
