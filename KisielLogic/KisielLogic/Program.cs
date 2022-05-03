@@ -10,6 +10,7 @@ namespace KisielLogic
 
         static void Main()
         {
+            Directory.CreateDirectory("Circuits");
             while (true)
             {
                 Console.WriteLine("1. Create a new gate");
